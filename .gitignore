@@ -1,0 +1,15 @@
+# R
+.Rhistory
+.RData
+.Rproj.user
+*.Rproj
+
+# rsconnect deployment
+rsconnect/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Shiny logs
+*.log
