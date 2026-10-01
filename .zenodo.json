@@ -1,0 +1,39 @@
+{
+  "title": "SeasonDx: a web tool for detecting and characterising seasonality in health time series",
+  "upload_type": "software",
+  "description": "SeasonDx is an open-source Shiny web application to detect, quantify and characterise seasonality in health time series. Users upload monthly or quarterly series, optionally replace outliers and missing values using STL-based smoothing, and assess seasonality through additive or multiplicative decomposition, seasonal indices, autocorrelation plots and complementary tests: Friedman rank-sum, ARIMA-based Welch and Kruskal-Wallis, an autoregressive R-squared measure of seasonal strength, frequency-domain tests (Bartlett's KS and Fisher's Kappa), and two-sample Kolmogorov-Smirnov and Kuiper tests comparing empirical and theoretical seasonal profiles. A live instance is available at https://chrglez.shinyapps.io/SeasonDx/.",
+  "creators": [
+    {
+      "name": "Pinilla, Jaime",
+      "affiliation": "Department of Quantitative Methods, University of Las Palmas de Gran Canaria, Spain"
+    },
+    {
+      "name": "González-Martel, Christian",
+      "affiliation": "Department of Quantitative Methods, University of Las Palmas de Gran Canaria, Spain"
+    },
+    {
+      "name": "Estupiñán-Romero, Francisco",
+      "affiliation": "Data Science for Health Services and Policy Research Group, Institute for Health Sciences in Aragon, Spain",
+      "orcid": "0000-0002-6285-8120"
+    }
+  ],
+  "keywords": [
+    "seasonality",
+    "time series",
+    "health services research",
+    "health planning",
+    "Shiny",
+    "R",
+    "web tool"
+  ],
+  "license": "mit",
+  "access_right": "open",
+  "language": "eng",
+  "related_identifiers": [
+    {
+      "identifier": "https://chrglez.shinyapps.io/SeasonDx/",
+      "relation": "isDocumentedBy",
+      "scheme": "url"
+    }
+  ]
+}

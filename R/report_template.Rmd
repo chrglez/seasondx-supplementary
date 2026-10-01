@@ -1,0 +1,77 @@
+---
+title: "SeasonDx --- Analysis Report"
+date: "`r format(Sys.time(), '%Y-%m-%d %H:%M')`"
+output:
+  pdf_document:
+    latex_engine: pdflatex
+    fig_width: 6.5
+    fig_height: 3.2
+params:
+  res: !r NULL
+header-includes:
+  - \usepackage{xcolor}
+  - \usepackage{booktabs}
+  - \usepackage{titlesec}
+  - \definecolor{seasondxpurple}{HTML}{5C3D99}
+  - \titleformat*{\section}{\large\bfseries\color{seasondxpurple}}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+res <- params$res
+freq <- frequency(res$ts_data)
+seasonal_vals <- as.vector(res$decomposition$seasonal)[1:freq]
+period_names <- if (freq == 12) {
+  c("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")
+} else {
+  paste0("Q", 1:freq)
+}
+seasonal_df <- data.frame(
+  Period = period_names,
+  Index = round(seasonal_vals, 6)
+)
+ar <- res$autoreg_results
+ar_df <- if (!is.null(ar)) data.frame(
+  Metric = c("R2 autoregression", "Strength", "Amplitude", "AR order",
+             "Bartlett KS D", "Bartlett KS p-value",
+             "Fisher Kappa K", "Fisher Kappa p-value"),
+  Value = c(round(ar$R2_autoreg, 4), ar$strength, round(ar$amplitude, 4),
+            ar$p_selected, round(ar$Bartlett_KS$statistic, 4),
+            format(ar$Bartlett_KS$p.value, digits = 4),
+            round(ar$Fisher_Kappa$statistic, 3),
+            format(ar$Fisher_Kappa$p.value, digits = 4))
+) else NULL
+```
+
+# Time Series
+
+```{r ts-plot}
+plot_report_original(res$ts_data)
+```
+
+# Seasonal Indices
+
+```{r seasonal-table}
+knitr::kable(seasonal_df, booktabs = TRUE, linesep = "", format = "latex")
+```
+
+```{r seasonal-plot}
+plot_report_seasonal(res$decomposition, res$decomp_type)
+```
+
+```{r ar-section, results='asis'}
+if (!is.null(ar)) {
+  cat("\n# Autoregression Results\n\n")
+  print(knitr::kable(ar_df, booktabs = TRUE, linesep = "", format = "latex"))
+}
+```
+
+```{r ar-plot, fig.height=5, eval=!is.null(ar)}
+plot_report_autoreg(ar)
+```
+
+\vfill
+\noindent\rule{\textwidth}{0.4pt}
+\smallskip
+
+{\footnotesize This work is funded by the National Plan of Scientific and Technical Research and Innovation (PID2022-139543OB-I00)}

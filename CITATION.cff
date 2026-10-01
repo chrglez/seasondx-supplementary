@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use SeasonDx, please cite it as below."
+title: "SeasonDx: a web tool for detecting and characterising seasonality in health time series"
+type: software
+version: 1.0.0
+date-released: 2026-10-01
+license: MIT
+repository-code: "https://github.com/chrglez/seasondx-supplementary"
+url: "https://chrglez.shinyapps.io/SeasonDx/"
+authors:
+  - family-names: Pinilla
+    given-names: Jaime
+    affiliation: "Department of Quantitative Methods, University of Las Palmas de Gran Canaria, Spain"
+  - family-names: González-Martel
+    given-names: Christian
+    affiliation: "Department of Quantitative Methods, University of Las Palmas de Gran Canaria, Spain"
+  - family-names: Estupiñán-Romero
+    given-names: Francisco
+    orcid: "https://orcid.org/0000-0002-6285-8120"
+    affiliation: "Data Science for Health Services and Policy Research Group, Institute for Health Sciences in Aragon, Spain"
+keywords: [seasonality, time series, health services research, Shiny, R]
